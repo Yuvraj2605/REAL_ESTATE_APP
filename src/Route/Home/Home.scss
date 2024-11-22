@@ -1,0 +1,70 @@
+@import '../../responsive.scss';
+
+.home {
+  display: flex;
+  height: 100%;
+
+  .test {
+    flex: 3;
+
+    .wrapper {
+      padding-right: 100px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      gap: 50px;
+
+      @include sm{
+        justify-content: flex-start;
+        padding-right: 0px;
+      }
+      
+      
+      .title {
+        font-size: 54px;
+
+        @include sm{
+          font-size: 32px;
+        }
+      }
+
+      .boxes {
+        display: flex;
+        justify-content: space-between;
+        gap: 70px;
+
+        @include sm{
+          display: none;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+
+        h2 {
+          font-size: 20px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .image {
+    flex: 2;
+    background-color: #fcf5f3;
+    height: 100vh;
+    position: relative;
+
+    @include md{
+      display: none;
+    }
+    img {
+      position: absolute;
+      width: 110%;
+      right: 0;
+   
+    }
+  }
+}
