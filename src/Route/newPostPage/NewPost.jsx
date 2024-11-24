@@ -6,13 +6,14 @@ import apiRequest from "../../Lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import UploadWidget from "../../Componants/uploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NewPost = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [images, setImages] = useState([]);
-  const { currentUser } = useContext(AuthContext);
-
+ // const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector(state=>state.currentUser) 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();

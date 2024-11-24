@@ -5,15 +5,20 @@ import Chat from "../../Componants/chat/Chat";
 import apiRequest from "../../Lib/apiRequest";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/userSilce";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { currentUser,updateFun} = useContext(AuthContext);
-
+ // const { currentUser,updateFun} = useContext(AuthContext);
+  const currentUser = useSelector(state=>state.currentUser) 
+ 
+   const dispatch = useDispatch();
   const handleLogout = async () => {
     try {
       const res = apiRequest.post("/auth/logout");
-      updateFun(null);
+     // updateFun(null);
+      dispatch(logout());
       navigate("/login")
     } catch (err) {
       console.log(err);

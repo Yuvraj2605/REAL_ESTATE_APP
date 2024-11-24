@@ -4,7 +4,9 @@ import Home from "../../Route/Home/Home";
 import { Navigate, Outlet } from "react-router-dom";
 import "./Layout.scss";
 import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 const Layout = () => {
+ 
   return (
     <div className="layout">
       <Navbar />
@@ -16,7 +18,8 @@ const Layout = () => {
 };
 
 const ProtectRoute = () => {
-  const { currentUser } = useContext(AuthContext);
+ // const { currentUser } = useContext(AuthContext);
+ const currentUser = useSelector(state=>state.currentUser) 
 
   return (
     <>

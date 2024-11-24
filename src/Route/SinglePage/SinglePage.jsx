@@ -8,11 +8,13 @@ import DOMPurify from "dompurify";
 import { useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../Lib/apiRequest";
+import { useSelector } from "react-redux";
 
 const SinglePage = () => {
   const postdata = useLoaderData();
   //console.log(postdata);
-  const { currentUser } = useContext(AuthContext);
+  //const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector(state=>state.currentUser) 
   const [saved, setSaved] = useState(postdata.isSaved);
   console.log(saved)
   const handleClick = async () => {

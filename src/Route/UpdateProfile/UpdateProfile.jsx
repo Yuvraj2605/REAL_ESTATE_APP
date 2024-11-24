@@ -4,14 +4,17 @@ import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../Lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import UploadWidget from "../../Componants/uploadWidget/UploadWidget";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../store/userSilce";
 
 const UpdateProfile = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
-  const { currentUser, updateFun } = useContext(AuthContext);
+  //const { currentUser, updateFun } = useContext(AuthContext); 
+  const currentUser = useSelector(state=>state.currentUser) 
   const [avatar, setAvatar] = useState([]);
-  console.log(avatar)
-
+  // console.log(avatar)
+  const dispatch =  useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,8 +28,8 @@ const UpdateProfile = () => {
         password,
         avatar:avatar[0]
       });
-
-      updateFun(res.data);
+      const data= res.data;
+     dispatch(updateUser(data));
       navigate("/profile");
     } catch (err) {
       setError(err);

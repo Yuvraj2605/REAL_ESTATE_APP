@@ -4,14 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import apiRequest from "../../Lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from "../../store/userSilce";
 
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const value = useSelector(state=>state.currentUser)
+  console.log(value)
+  // const {updateFun} = useContext(AuthContext);
   
-  const {updateFun} = useContext(AuthContext);
-
+   const dispatch = useDispatch();
 
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -28,8 +32,8 @@ const Login = () => {
         password,
       });
       
-      updateFun({...res.data});
-
+      //updateFun({...res.data});
+       dispatch(login({...res.data})); 
       navigate("/");
     } catch (err) {
       console.log(err)

@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const { currentUser } = useContext(AuthContext);
-
+  //const { currentUser } = useContext(AuthContext);
+  const currentUser = useSelector(state=>state.currentUser) 
   return (
     <nav>
       <div className="left">
